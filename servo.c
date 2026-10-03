@@ -20,6 +20,7 @@
 #include <stdlib.h>
 
 #include "config.h"
+#include "kalman.h"
 #include "linreg.h"
 #include "ntpshm.h"
 #include "nullf.h"
@@ -44,6 +45,9 @@ struct servo *servo_create(struct config *cfg, enum servo_type type,
 		break;
 	case CLOCK_SERVO_LINREG:
 		servo = linreg_servo_create(fadj);
+		break;
+	case CLOCK_SERVO_KALMAN:
+		servo = kalman_servo_create(cfg, fadj);
 		break;
 	case CLOCK_SERVO_NTPSHM:
 		servo = ntpshm_servo_create(cfg);

@@ -653,7 +653,8 @@ The default is "000000.0000.000000"
 .B clock_servo
 The servo which is used to synchronize the local clock. Valid values
 are "pi" for a PI controller, "linreg" for an adaptive controller
-using linear regression, "ntpshm" and "refclock_sock" for the NTP SHM and
+using linear regression, "kalman" for a Giorgi-Narduzzi-type Kalman-filter,
+"ntpshm" and "refclock_sock" for the NTP SHM and
 chrony SOCK reference clocks respectively to allow another process to
 synchronize the local clock, and "nullf" for a servo that always dials
 frequency offset zero (for use in SyncE nodes).
@@ -777,6 +778,35 @@ Check mode only check but do not set.
 Full mode set the receive filter to mark all packets with hardware time stamp,
  so all applications can get them.
 The default is normal.
+
+.TP
+.B kalman_calm_tuning_offset_coeff
+The weight of the offset contribution to the final clock adjustment
+when operating in calm tuning mode (i.e. below the switchover
+threshold). The default value is 0.01.
+
+.TP
+.B kalman_fast_tuning_offset_coeff
+The weight of the offset contribution to the final clock adjustment
+when operating in fast tuning mode. The default value is 0.2.
+
+.TP
+.B kalman_fast_tuning_threshold
+The offset above which a more aggressive clock adjustment is applied
+to speed up convergence in ns. The default value is 500.
+
+.TP
+.B kalman_sigma_gamma_squared
+The variance of the local clock skew in s^2. The default value is 1E-12.
+
+.TP
+.B kalman_sigma_theta_m_squared
+The variance of the local clock offset measurement uncertainty in s^2.
+The default value is 0.5E-10.
+
+.TP
+.B kalman_sigma_theta_squared
+The variance of the local clock offset in s^2. The default value is 1E-16.
 
 .TP
 .B kernel_leap

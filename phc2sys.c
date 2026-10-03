@@ -1214,7 +1214,7 @@ static void usage(char *progname)
 		" -w             wait for ptp4l\n"
 		" common options:\n"
 		" -f [file]      configuration file\n"
-		" -E [pi|linreg] clock servo (pi)\n"
+		" -E [servo]     clock servo (pi)\n"
 		" -P [kp]        proportional constant (0.7)\n"
 		" -I [ki]        integration constant (0.3)\n"
 		" -S [step]      step threshold (disabled)\n"
@@ -1336,6 +1336,9 @@ int main(int argc, char *argv[])
 			} else if (!strcasecmp(optarg, "linreg")) {
 				config_set_int(cfg, "clock_servo",
 					       CLOCK_SERVO_LINREG);
+			} else if (!strcasecmp(optarg, "kalman")) {
+				config_set_int(cfg, "clock_servo",
+					       CLOCK_SERVO_KALMAN);
 			} else if (!strcasecmp(optarg, "ntpshm")) {
 				config_set_int(cfg, "clock_servo",
 					       CLOCK_SERVO_NTPSHM);

@@ -298,7 +298,8 @@ inclusive. The default is 0 (disabled).
 .B clock_servo
 The servo which is used to synchronize the local clock. Valid values
 are "pi" for a PI controller, "linreg" for an adaptive controller using
-linear regression, "ntpshm" for the NTP SHM reference clock to allow
+linear regression, "kalman" for a Giorgi-Narduzzi-type Kalman-filter,
+"ntpshm" for the NTP SHM reference clock to allow
 another process to synchronize the local clock (the SHM segment number
 is set to the domain number), and "nullf" for a servo that always dials
 frequency offset zero (for use in SyncE nodes). The default is "pi."
@@ -325,6 +326,30 @@ Same as option
 .TP
 .B free-running
 Don't adjust the sink clock if enabled. The default is 0 (disabled).
+
+.TP
+.B kalman_calm_tuning_offset_coeff
+See ptp4l(8).
+
+.TP
+.B kalman_fast_tuning_offset_coeff
+See ptp4l(8).
+
+.TP
+.B kalman_fast_tuning_threshold
+See ptp4l(8).
+
+.TP
+.B kalman_sigma_gamma_squared
+See ptp4l(8).
+
+.TP
+.B kalman_sigma_theta_m_squared
+See ptp4l(8).
+
+.TP
+.B kalman_sigma_theta_squared
+See ptp4l(8).
 
 .TP
 .B kernel_leap

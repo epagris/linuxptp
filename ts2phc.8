@@ -130,7 +130,8 @@ inclusive. The default is 0 (disabled).
 .B clock_servo
 The servo which is used to synchronize the local clock. Valid values
 are "pi" for a PI controller, "linreg" for an adaptive controller
-using linear regression, "ntpshm" and "refclock_sock" for the NTP SHM and
+using linear regression, "kalman" for a Giorgi-Narduzzi-type Kalman-filter,
+"ntpshm" and "refclock_sock" for the NTP SHM and
 chrony SOCK reference clocks respectively to allow another process to
 synchronize the local clock, and "nullf" for a servo that always dials
 frequency offset zero (for use in SyncE nodes).
@@ -150,6 +151,30 @@ When set to 1, no PHC will be adjusted.
 This option can be useful in test scenarios, for example to determine
 how well synchronized a group of local clocks are to each other.
 The default is 0 (adjust the clocks).
+
+.TP
+.B kalman_calm_tuning_offset_coeff
+See ptp4l(8).
+
+.TP
+.B kalman_fast_tuning_offset_coeff
+See ptp4l(8).
+
+.TP
+.B kalman_fast_tuning_threshold
+See ptp4l(8).
+
+.TP
+.B kalman_sigma_gamma_squared
+See ptp4l(8).
+
+.TP
+.B kalman_sigma_theta_m_squared
+See ptp4l(8).
+
+.TP
+.B kalman_sigma_theta_squared
+See ptp4l(8).
 
 .TP
 .B leapfile
